@@ -97,7 +97,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity_color = cv2.applyColorMap(disparity_fixtype, cv2.COLORMAP_JET)
     disparity_color = utils.visualize(disparity_color, detection_result)
     print(type(detection_result))
-    df = pd.DataDrame(detection_result)
+    df = pd.DataFrame(detection_result)
     print(df)
 
 
