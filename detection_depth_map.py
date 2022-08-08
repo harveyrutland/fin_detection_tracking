@@ -231,16 +231,12 @@ while True:
     imgRight = pair_img [0:img_height,int(img_width/2):img_width] #Y+H and X+W
     imgLeft = pair_img [0:img_height,0:int(img_width/2)] #Y+H and X+W
     rectified_pair = calibration.rectify((imgLeft, imgRight))
-    disparity = stereo_depth_map(rectified_pair, detection_result)
-    # show the frame
-    # cv2.imshow("left", imgLeft)
-    # cv2.imshow("right", imgRight)    
-
-    t2 = datetime.now()
-    print ("DM build time: " + str(t2-t1))
 
 
-    ######
+
+
+
+
 
     parser = argparse.ArgumentParser(
       formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -279,4 +275,20 @@ while True:
 
     detection_result = run(imgLeft_col, args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
         int(args.numThreads), bool(args.enableEdgeTPU))
+
+
+
+    ######
+
+    disparity = stereo_depth_map(rectified_pair, detection_result)
+    # show the frame
+    # cv2.imshow("left", imgLeft)
+    # cv2.imshow("right", imgRight)    
+    t2 = datetime.now()
+    print ("DM build time: " + str(t2-t1))
+
+
+    ######
+
+
 
