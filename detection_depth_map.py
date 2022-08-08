@@ -134,7 +134,7 @@ load_map_settings ("3dmap_set.txt")
 #####################
 
 
-def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
+def run(img_left, model: str, camera_id: int, width: int, height: int, num_threads: int,
         enable_edgetpu: bool) -> None:
   """Continuously run inference on images acquired from the camera.
 
@@ -174,22 +174,23 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
   detector = vision.ObjectDetector.create_from_options(options)
 
 
-  counter += 1
-  image = cv2.flip(image, 1)
+#   counter += 1
+#   image = cv2.flip(image, 1)
 
-    # Convert the image from BGR to RGB as required by the TFLite model.
-  rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+#   # Convert the image from BGR to RGB as required by the TFLite model.
+#   rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-    # Create a TensorImage object from the RGB image.
+  # Create a TensorImage object from the RGB image.
+  rgb_image = img_left
   input_tensor = vision.TensorImage.create_from_array(rgb_image)
 
-    # Run object detection estimation using the model.
+  # Run object detection estimation using the model.
   detection_result = detector.detect(input_tensor)
 
-    # Draw keypoints and edges on input image
+  # Draw keypoints and edges on input image
   image = utils.visualize(image, detection_result)
 
-    # Calculate the FPS
+  # Calculate the FPS
   if counter % fps_avg_frame_count == 0:
       end_time = time.time()
       fps = fps_avg_frame_count / (end_time - start_time)
@@ -269,6 +270,6 @@ while True:
         default=False)
     args = parser.parse_args()
 
-    run(args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
+    run(imglegft, args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
         int(args.numThreads), bool(args.enableEdgeTPU))
 
