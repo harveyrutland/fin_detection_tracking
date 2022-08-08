@@ -189,7 +189,7 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
   detection_result = detector.detect(input_tensor)
 
   # Draw keypoints and edges on input image
-  image = utils.visualize(image, detection_result)
+  img_left = utils.visualize(img_left, detection_result)
 
   # Calculate the FPS
   if counter % fps_avg_frame_count == 0:
@@ -200,10 +200,10 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
     # Show the FPS
   fps_text = 'FPS = {:.1f}'.format(fps)
   text_location = (left_margin, row_size)
-  cv2.putText(image, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,font_size, text_color, font_thickness)
+  cv2.putText(img_left, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,font_size, text_color, font_thickness)
 
 
-  cv2.imshow('object_detector', image)
+  cv2.imshow('object_detector', img_left)
 
   cap.release()
   cv2.destroyAllWindows()
