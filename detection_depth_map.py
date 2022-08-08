@@ -204,8 +204,11 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
   cv2.putText(img_left, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,font_size, text_color, font_thickness)
   cv2.imshow('object_detector', img_left)
 
+  return detection_result
+
 #   cap.release()
 #   cv2.destroyAllWindows()
+
 
   #####################
   ######################
@@ -273,6 +276,6 @@ while True:
         default=False)
     args = parser.parse_args()
 
-    run(imgLeft_col, args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
+    detection_result = run(imgLeft_col, args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
         int(args.numThreads), bool(args.enableEdgeTPU))
 
