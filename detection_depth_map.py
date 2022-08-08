@@ -6,6 +6,7 @@ from stereovision.calibration import StereoCalibrator
 from stereovision.calibration import StereoCalibration
 from datetime import datetime
 import arducam_mipicamera as arducam
+import pandas as pd
 
 
 
@@ -96,10 +97,9 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity_color = cv2.applyColorMap(disparity_fixtype, cv2.COLORMAP_JET)
     disparity_color = utils.visualize(disparity_color, detection_result)
     print(type(detection_result))
-    np_dr = np.array(detection_result)
-    print(type(np_dr))
-    print(np_dr[0])
-    
+    df = pd.dataframe(detection_result)
+    print(df)
+
 
 
 
