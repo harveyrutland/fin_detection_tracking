@@ -98,7 +98,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     print(type(detection_result))
     np_dr = np.array(detection_result)
     print(type(np_dr))
-
+    print(np_dr)
     
 
 
