@@ -226,6 +226,7 @@ while True:
     pair_img = cv2.cvtColor (frame, cv2.COLOR_BGR2GRAY)
     
     imgRight = pair_img [0:img_height,int(img_width/2):img_width] #Y+H and X+W
+    imgLeft = pair_img [0:img_height,0:int(img_width/2)] #Y+H and X+W
     rectified_pair = calibration.rectify((imgLeft, imgRight))
     disparity = stereo_depth_map(rectified_pair)
     # show the frame
