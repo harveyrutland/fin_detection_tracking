@@ -122,7 +122,7 @@ def stereo_depth_map(rectified_pair, detection_results):
 
         depth_value = rect_filt
         print('depth value', depth_value)
-    except IndexError:
+    except IndexError, statistics.StatisticsError:
         pass
 
 
