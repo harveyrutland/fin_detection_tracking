@@ -118,12 +118,11 @@ def stereo_depth_map(rectified_pair, detection_results):
             # print(int(i.mean()))
             if int(i.mean()) > 60:
                 ls.append(int(i.mean()))
-        try:
+        if len(ls) != 0:
             rect_filt = mean(ls)
             depth_value = rect_filt
             print('depth value', depth_value)
-        except statistics.StatisticsError:
-            pass
+       
     except IndexError:
         pass
 
