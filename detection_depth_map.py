@@ -95,9 +95,8 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity_fixtype = cv2.convertScaleAbs(disparity_grayscale, alpha=(255.0/65535.0))
     disparity_color = cv2.applyColorMap(disparity_fixtype, cv2.COLORMAP_JET)
     disparity_color = utils.visualize(disparity_color, detection_result)
-    # print(detection_result)
-    for i in detection_results:
-        print(i)
+    print(detection_result)
+    
 
 
 
