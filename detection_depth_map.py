@@ -178,10 +178,11 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
 #   image = cv2.flip(image, 1)
 
 #   # Convert the image from BGR to RGB as required by the TFLite model.
-#   rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+  
+  rgb_image = cv2.cvtColor(img_left, cv2.COLOR_BGR2RGB)
 
   # Create a TensorImage object from the RGB image.
-  rgb_image = img_left
+  
   input_tensor = vision.TensorImage.create_from_array(rgb_image)
 
   # Run object detection estimation using the model.
@@ -218,10 +219,12 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
 while True:
     frame = get_frame(camera)
     frame = cv2.resize(frame, (img_width, img_height))
+     
 
+    imgLeft_col = frame [0:img_height,0:int(img_width/2)] #Y+H and X+W
     t1 = datetime.now()
     pair_img = cv2.cvtColor (frame, cv2.COLOR_BGR2GRAY)
-    imgLeft = pair_img [0:img_height,0:int(img_width/2)] #Y+H and X+W
+    
     imgRight = pair_img [0:img_height,int(img_width/2):img_width] #Y+H and X+W
     rectified_pair = calibration.rectify((imgLeft, imgRight))
     disparity = stereo_depth_map(rectified_pair)
@@ -270,6 +273,6 @@ while True:
         default=False)
     args = parser.parse_args()
 
-    run(imgLeft, args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
+    run(imgLeft_col, args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
         int(args.numThreads), bool(args.enableEdgeTPU))
 
