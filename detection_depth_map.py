@@ -104,7 +104,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     y2 = x1 + detection_results.detections[0].bounding_box.height
     # x1, y1, x2, y2 = box[0], box[1], box[2], box[3]
     # print(detection_results)
-    print('x1, x2, y1, y2', x1+100, x2+100, y1, y2)
+    print('x1, x2, y1, y2', x1, x2, y1, y2)
     rect = disparity_color[y1:y1+y2, x1:x1+x2]
     depth_value = rect.mean()
     print('depth value', depth_value)
