@@ -205,7 +205,7 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
 
   cv2.imshow('object_detector', img_left)
 
-  cap.release()
+#   cap.release()
   cv2.destroyAllWindows()
 
   #####################
