@@ -7,6 +7,7 @@ from stereovision.calibration import StereoCalibration
 from datetime import datetime
 import arducam_mipicamera as arducam
 import pandas as pd
+from statistics import mean
 
 
 
