@@ -115,13 +115,13 @@ def stereo_depth_map(rectified_pair, detection_results):
         rect = disparity_color[y1:y1+y2, x1:x1+x2]
         ls = []
         for i in rect:
-            print(int(i.mean()))
+            # print(int(i.mean()))
             if int(i.mean()) > 46:
                 ls.append(int(i.mean()))
         rect_filt = mean(ls)
 
         depth_value = rect_filt
-        # print('depth value', depth_value)
+        print('depth value', depth_value)
     except IndexError:
         pass
 
