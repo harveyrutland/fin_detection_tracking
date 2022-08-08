@@ -1,28 +1,3 @@
-# Copyright (C) 2019 Eugene Pomazov, <stereopi.com>, virt2real team
-#
-# This file is part of StereoPi tutorial scripts.
-#
-# StereoPi tutorial is free software: you can redistribute it 
-# and/or modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation, either version 3 of the 
-# License, or (at your option) any later version.
-#
-# StereoPi tutorial is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with StereoPi tutorial.  
-# If not, see <http://www.gnu.org/licenses/>.
-#
-# Most of this code is updated version of 3dberry.org project by virt2real
-# 
-# Thanks to Adrian and http://pyimagesearch.com, as there are lot of
-# code in this tutorial was taken from his lessons.
-# 
-
-
 import time
 import cv2
 import numpy as np
@@ -35,10 +10,6 @@ import arducam_mipicamera as arducam
 
 
 import argparse
-import sys
-import time
-
-import cv2
 from tflite_support.task import core
 from tflite_support.task import processor
 from tflite_support.task import vision
@@ -202,45 +173,35 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
       base_options=base_options, detection_options=detection_options)
   detector = vision.ObjectDetector.create_from_options(options)
 
-  # Continuously capture images from the camera and run inference
-#   while cap.isOpened():
-#     success, image = cap.read()
-#     if not success:
-#       sys.exit(
-#           'ERROR: Unable to read from webcam. Please verify your webcam settings.'
-#       )
 
-   counter += 1
-   image = cv2.flip(image, 1)
+  counter += 1
+  image = cv2.flip(image, 1)
 
     # Convert the image from BGR to RGB as required by the TFLite model.
-   rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+  rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     # Create a TensorImage object from the RGB image.
-   input_tensor = vision.TensorImage.create_from_array(rgb_image)
+  input_tensor = vision.TensorImage.create_from_array(rgb_image)
 
     # Run object detection estimation using the model.
-   detection_result = detector.detect(input_tensor)
+  detection_result = detector.detect(input_tensor)
 
     # Draw keypoints and edges on input image
-   image = utils.visualize(image, detection_result)
+  image = utils.visualize(image, detection_result)
 
     # Calculate the FPS
-   if counter % fps_avg_frame_count == 0:
-       end_time = time.time()
-       fps = fps_avg_frame_count / (end_time - start_time)
-       start_time = time.time()
+  if counter % fps_avg_frame_count == 0:
+      end_time = time.time()
+      fps = fps_avg_frame_count / (end_time - start_time)
+      start_time = time.time()
 
     # Show the FPS
-   fps_text = 'FPS = {:.1f}'.format(fps)
-   text_location = (left_margin, row_size)
-   cv2.putText(image, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,
-                font_size, text_color, font_thickness)
+  fps_text = 'FPS = {:.1f}'.format(fps)
+  text_location = (left_margin, row_size)
+  cv2.putText(image, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,font_size, text_color, font_thickness)
 
-    # # Stop the program if the ESC key is pressed.
-    # if cv2.waitKey(1) == 27:
-    #     break
-   cv2.imshow('object_detector', image)
+
+  cv2.imshow('object_detector', image)
 
   cap.release()
   cv2.destroyAllWindows()
