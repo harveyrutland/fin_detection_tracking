@@ -85,7 +85,7 @@ cv2.moveWindow("right", 850,100)
 disparity = np.zeros((img_width, img_height), np.uint8)
 sbm = cv2.StereoBM_create(numDisparities=0, blockSize=21)
 
-def stereo_depth_map(rectified_pair):
+def stereo_depth_map(rectified_pair, detection_results):
     dmLeft = rectified_pair[0]
     dmRight = rectified_pair[1]
     disparity = sbm.compute(dmLeft, dmRight)
@@ -94,6 +94,7 @@ def stereo_depth_map(rectified_pair):
     disparity_grayscale = (disparity-local_min)*(65535.0/(local_max-local_min))
     disparity_fixtype = cv2.convertScaleAbs(disparity_grayscale, alpha=(255.0/65535.0))
     disparity_color = cv2.applyColorMap(disparity_fixtype, cv2.COLORMAP_JET)
+    disparity_color = utils.visualize(disparity_color, detection_result)
     cv2.imshow("Image", disparity_color)
     key = cv2.waitKey(1) & 0xFF   
     if key == ord("q"):
@@ -201,8 +202,6 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
   fps_text = 'FPS = {:.1f}'.format(fps)
   text_location = (left_margin, row_size)
   cv2.putText(img_left, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,font_size, text_color, font_thickness)
-
-
   cv2.imshow('object_detector', img_left)
 
 #   cap.release()
@@ -228,7 +227,7 @@ while True:
     imgRight = pair_img [0:img_height,int(img_width/2):img_width] #Y+H and X+W
     imgLeft = pair_img [0:img_height,0:int(img_width/2)] #Y+H and X+W
     rectified_pair = calibration.rectify((imgLeft, imgRight))
-    disparity = stereo_depth_map(rectified_pair)
+    disparity = stereo_depth_map(rectified_pair, detection_result)
     # show the frame
     # cv2.imshow("left", imgLeft)
     # cv2.imshow("right", imgRight)    
