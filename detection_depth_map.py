@@ -270,6 +270,6 @@ while True:
         default=False)
     args = parser.parse_args()
 
-    run(imglegft, args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
+    run(imgLeft, args.model, int(args.cameraId), args.frameWidth, args.frameHeight,
         int(args.numThreads), bool(args.enableEdgeTPU))
 
