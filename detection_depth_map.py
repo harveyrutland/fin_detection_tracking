@@ -96,27 +96,29 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity_grayscale = (disparity-local_min)*(65535.0/(local_max-local_min))
     disparity_fixtype = cv2.convertScaleAbs(disparity_grayscale, alpha=(255.0/65535.0))
     disparity_color = cv2.applyColorMap(disparity_fixtype, cv2.COLORMAP_JET)
-
+    disparity_vis = utils.visualize(disparity_color, detection_results)
     # print(detection_results.detections[0].bounding_box)
     
 
     try:
-        # x1 = (detection_results.detections[0].bounding_box.origin_x) - 50
-        # x2 = (x1 + detection_results.detections[0].bounding_box.width) + 100
-        # y1 = detection_results.detections[0].bounding_box.origin_y - 15
-        # y2 = y1 + detection_results.detections[0].bounding_box.height  + 30
+        x1 = (detection_results.detections[0].bounding_box.origin_x) - 50
+        x2 = (x1 + detection_results.detections[0].bounding_box.width) + 100
+        y1 = detection_results.detections[0].bounding_box.origin_y - 15
+        y2 = y1 + detection_results.detections[0].bounding_box.height  + 30
 
-        x1 = 0
-        x2 =  10
-        y1 = 0
-        y2 = 10
+        # x1 = 0
+        # x2 =  10
+        # y1 = 0
+        # y2 = 10
         # x1, y1, x2, y2 = box[0], box[1], box[2], box[3]
         # print(detection_results)
         print('x1, x2, y1, y2', x1, x2, y1, y2)
         box = [x1, y1, x2-x1, y2-y1]
         cv2.rectangle(disparity_color,box,color=(0,255,0),thickness=2)
         rect = disparity_color[y1:y1+y2, x1:x1+x2]
-        depth_value = rect.mean()
+        # depth_value = rect.mean()
+
+
         if x1 < 0:
             x1 = 0
         if y1 < 0:
@@ -125,8 +127,7 @@ def stereo_depth_map(rectified_pair, detection_results):
         ls = []
         for i in rect:
             # print(int(i.mean()))
-            # print('i is', rect.mean())
-            if i.mean() != 69.76:
+            if int(i.mean()) > 70:
                 ls.append(int(i.mean()))
         if len(ls) != 0:
             rect_filt = mean(ls)
@@ -141,7 +142,7 @@ def stereo_depth_map(rectified_pair, detection_results):
 
 
 
-    disparity_vis = utils.visualize(disparity_color, detection_results)
+
     cv2.imshow("Image", disparity_color)
     key = cv2.waitKey(1) & 0xFF   
     if key == ord("q"):
