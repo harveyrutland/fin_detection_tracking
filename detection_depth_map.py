@@ -101,7 +101,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     
 
     try:
-        x1 = (detection_results.detections[0].bounding_box.origin_x)-10
+        x1 = (detection_results.detections[0].bounding_box.origin_x)
         x2 = (x1 + detection_results.detections[0].bounding_box.width)
         y1 = detection_results.detections[0].bounding_box.origin_y
         y2 = x1 + detection_results.detections[0].bounding_box.height
