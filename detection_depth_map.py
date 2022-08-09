@@ -96,20 +96,20 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity_grayscale = (disparity-local_min)*(65535.0/(local_max-local_min))
     disparity_fixtype = cv2.convertScaleAbs(disparity_grayscale, alpha=(255.0/65535.0))
     disparity_color = cv2.applyColorMap(disparity_fixtype, cv2.COLORMAP_JET)
-    # disparity_vis = utils.visualize(disparity_color, detection_results)
+    disparity_vis = utils.visualize(disparity_color, detection_results)
     # print(detection_results.detections[0].bounding_box)
     
 
     try:
-        # x1 = (detection_results.detections[0].bounding_box.origin_x) - 30
-        # x2 = (x1 + detection_results.detections[0].bounding_box.width) + 60
-        # y1 = detection_results.detections[0].bounding_box.origin_y - 30
-        # y2 = y1 + detection_results.detections[0].bounding_box.height  + 60
+        x1 = (detection_results.detections[0].bounding_box.origin_x) - 30
+        x2 = (x1 + detection_results.detections[0].bounding_box.width) + 60
+        y1 = detection_results.detections[0].bounding_box.origin_y - 30
+        y2 = y1 + detection_results.detections[0].bounding_box.height  + 60
 
-        x1 = 0
-        x2 =  10
-        y1 = 0
-        y2 = 10
+        # x1 = 0
+        # x2 =  10
+        # y1 = 0
+        # y2 = 10
         # x1, y1, x2, y2 = box[0], box[1], box[2], box[3]
         # print(detection_results)
         print('x1, x2, y1, y2', x1, x2, y1, y2)
@@ -117,21 +117,21 @@ def stereo_depth_map(rectified_pair, detection_results):
         cv2.rectangle(disparity_color,box,color=(0,255,0),thickness=2)
         rect = disparity_color[y1:y1+y2, x1:x1+x2]
         depth_value = rect.mean()
-        # if x1 < 0:
-        #     x1 = 0
-        # if y1 < 0:
-        #     y1 = 0
-        # rect = disparity_color[y1:y1+y2, x1:x1+x2]
-        # ls = []
-        # for i in rect:
-        #     # print(int(i.mean()))
-        #     if int(i.mean()) > 60:
-        #         ls.append(int(i.mean()))
-        # if len(ls) != 0:
-        #     rect_filt = mean(ls)
-        #     depth_value = rect_filt
-        # else:
-        #     depth_value = 0
+        if x1 < 0:
+            x1 = 0
+        if y1 < 0:
+            y1 = 0
+        rect = disparity_color[y1:y1+y2, x1:x1+x2]
+        ls = []
+        for i in rect:
+            # print(int(i.mean()))
+            if int(i.mean()) > 70:
+                ls.append(int(i.mean()))
+        if len(ls) != 0:
+            rect_filt = mean(ls)
+            depth_value = rect_filt
+        else:
+            depth_value = 0
         print('depth value', depth_value)
        
     except IndexError:
