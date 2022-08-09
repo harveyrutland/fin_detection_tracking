@@ -38,7 +38,7 @@ import json
 import time
 
 # Global variables preset
-imageToDisp = './scenes/dm-tune.jpg'
+imageToDisp = './scenes/photo.png'
 photo_width = 640
 photo_height = 240
 image_width = 320
