@@ -127,7 +127,7 @@ def stereo_depth_map(rectified_pair, detection_results):
         ls = []
         for i in rect:
             # print(int(i.mean()))
-            if int(i.mean()) > 70:
+            if int(i.mean()) > 65:
                 ls.append(int(i.mean()))
         if len(ls) != 0:
             rect_filt = mean(ls)
