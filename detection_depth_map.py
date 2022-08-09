@@ -122,7 +122,7 @@ def stereo_depth_map(rectified_pair, detection_results):
                 ls.append(int(i.mean()))
         if len(ls) != 0:
             rect_filt = mean(ls)
-        depth_value = rect_filt
+            depth_value = rect_filt
         print('depth value', depth_value)
        
     except IndexError:
