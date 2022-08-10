@@ -146,11 +146,11 @@ def stereo_depth_map(rectified_pair, detection_results):
                 print('score dict')
                 print(score_dict)
                 df = pd.DataFrame.from_dict(score_dict, orient = 'index')
-                # df.to_csv(index=True)
-                df.to_csv('roation_data.csv', index=True) 
+                # df.to_csv(index=True) 
                 print(df)
-                stacked = df.stack()
-                print(stacked)
+                df = df.stack()
+                print(df)
+                df.to_csv('roation_data.csv', index=True)
                 log_count = 0
 
                 log = False
