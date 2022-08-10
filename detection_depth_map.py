@@ -102,7 +102,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity_vis = utils.visualize(disparity_color, detection_results)
     # print(detection_results.detections[0].bounding_box)
     # print('detection results', detection_results)
-    detection_score = detection_results.detections[0].classes.score  
+    detection_score = detection_results.detections[0].classes[0].score  
     print('detection score', detection_score)
     
 
