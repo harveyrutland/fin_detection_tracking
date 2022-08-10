@@ -93,6 +93,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity = sbm.compute(dmLeft, dmRight)
     local_max = disparity.max()
     local_min = disparity.min()
+    print('local min', local_min)
     disparity_grayscale = (disparity-local_min)*(65535.0/(local_max-local_min))
     disparity_fixtype = cv2.convertScaleAbs(disparity_grayscale, alpha=(255.0/65535.0))
     disparity_color = cv2.applyColorMap(disparity_fixtype, cv2.COLORMAP_JET)
