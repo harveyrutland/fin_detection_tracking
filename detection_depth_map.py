@@ -147,6 +147,7 @@ def stereo_depth_map(rectified_pair, detection_results):
                 print(df)
                 stacked = df.stack()
                 print(stacked)
+                log_count = 0
 
                 log = False
         except IndexError:
