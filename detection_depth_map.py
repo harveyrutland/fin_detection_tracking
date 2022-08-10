@@ -101,9 +101,9 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity_color = cv2.applyColorMap(disparity_fixtype, cv2.COLORMAP_JET)
     disparity_vis = utils.visualize(disparity_color, detection_results)
     # print(detection_results.detections[0].bounding_box)
-    print('detection results', detection_results)
-    # detection_score = detection_results.detections[0].classes.score  
-    # print('detection score', detection_score)
+    # print('detection results', detection_results)
+    detection_score = detection_results.detections[0].classes.score  
+    print('detection score', detection_score)
     
 
     try:
