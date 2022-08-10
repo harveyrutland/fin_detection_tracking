@@ -140,7 +140,7 @@ def stereo_depth_map(rectified_pair, detection_results):
             print(log_count)
             score_ls.append(detection_score)
             
-            if log_count == 5:
+            if log_count == 100:
                 score_dict[angle] = score_ls
                 print('score dict')
                 print(score_dict)
