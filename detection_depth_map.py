@@ -8,6 +8,8 @@ from datetime import datetime
 import arducam_mipicamera as arducam
 import pandas as pd
 from statistics import mean
+import keyboard
+
 
 
 
@@ -29,6 +31,12 @@ TTH = 100
 UR = 10
 SR = 14
 SPWS = 100
+
+
+log == False 
+score_dict = {}
+log_count = 0 
+
 
 try:
   camera_params = json.load(open("camera_params.txt", "r"))
@@ -102,9 +110,23 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity_vis = utils.visualize(disparity_color, detection_results)
     # print(detection_results.detections[0].bounding_box)
     # print('detection results', detection_results)
-    detection_score = detection_results.detections[0].classes[0].score  
-    print('detection score', detection_score)
+
     
+
+    if log = False:
+        angle = input('Let us wait for user input. \n') 
+        print('loading started')
+        log = Ture 
+
+    if log == True:
+        detection_score = detection_results.detections[0].classes[0].score  
+        print('detection score', detection_score)
+        log_count += 1
+        score_dict.append(detection_score)
+        if log_count == 1000:
+            print('score dict')
+            print(score_dict)
+            log = False
 
     try:
         x1 = (detection_results.detections[0].bounding_box.origin_x) - 40
