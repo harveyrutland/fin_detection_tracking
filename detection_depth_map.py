@@ -122,10 +122,6 @@ def stereo_depth_map(rectified_pair, detection_results):
 
     if log == False:
         angle = input('Let us wait for user input. \n') 
-        if angle == 'stop':
-            df = pd.DataFrame.from_dict(score_dict, orient = 'index')
-            df.to_csv(index=True)
-            break
 
 
         print('loading started')
@@ -150,6 +146,7 @@ def stereo_depth_map(rectified_pair, detection_results):
                 print('score dict')
                 print(score_dict)
                 df = pd.DataFrame.from_dict(score_dict, orient = 'index')
+                df.to_csv(index=True)
                 print(df)
                 stacked = df.stack()
                 print(stacked)
