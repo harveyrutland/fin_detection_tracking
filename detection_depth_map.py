@@ -33,7 +33,7 @@ SR = 14
 SPWS = 100
 
 
-log == False 
+log = False 
 score_dict = {}
 log_count = 0 
 
