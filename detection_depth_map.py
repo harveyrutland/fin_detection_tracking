@@ -37,7 +37,7 @@ log = False
 score_dict = {}
 log_count = 0 
 angle = None
-ls = []
+score_ls = []
 
 
 try:
@@ -101,7 +101,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     global log
     global log_count
     global angle
-    global ls
+    global score_ls
    
     dmLeft = rectified_pair[0]
     dmRight = rectified_pair[1]
@@ -128,7 +128,7 @@ def stereo_depth_map(rectified_pair, detection_results):
             score_dict[str(angle)] = []
         except IndexError:
             detection_score = 0 
-            ls.append(detection_score)
+            score_ls.append(detection_score)
         log = True 
 
     if log == True:
@@ -137,10 +137,10 @@ def stereo_depth_map(rectified_pair, detection_results):
             print('detection score', detection_score)
             log_count += 1
             print(log_count)
-            ls.append(detection_score)
+            score_ls.append(detection_score)
             
             if log_count == 100:
-                score_dict[angle] = ls
+                score_dict[angle] = score_ls
                 print('score dict')
                 print(score_dict)
                 log = False
