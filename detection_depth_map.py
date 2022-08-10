@@ -121,6 +121,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     if log == False:
         angle = input('Let us wait for user input. \n') 
         print('loading started')
+        d[str(angle)] = str(angle)
         log = True 
 
     if log == True:
