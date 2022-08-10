@@ -143,7 +143,7 @@ def stereo_depth_map(rectified_pair, detection_results):
                 score_dict[angle] = score_ls
                 print('score dict')
                 print(score_dict)
-                df = pd.DataFrame.from_dict(score_dict, columns = ['angle'])
+                df = pd.DataFrame.from_dict(score_dict, orient = 'columns')
                 print(df)
                 log = False
         except IndexError:
