@@ -117,7 +117,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     if log == False:
         angle = input('Let us wait for user input. \n') 
         print('loading started')
-        log = Ture 
+        log = True 
 
     if log == True:
         detection_score = detection_results.detections[0].classes[0].score  
