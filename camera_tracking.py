@@ -319,9 +319,10 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
 detection_result = None
 ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 ser.reset_input_buffer()
+print('started')
 while True:
  
-   
+    
     line = ser.readline().decode('utf-8').rstrip()
     print(line)
 
