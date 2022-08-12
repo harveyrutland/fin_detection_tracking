@@ -88,10 +88,10 @@ calibration = StereoCalibration(input_folder='calib_result')
 # Initialize interface windows
 cv2.namedWindow("Image")
 cv2.moveWindow("Image", 50,100)
-cv2.namedWindow("left")
-cv2.moveWindow("left", 450,100)
-cv2.namedWindow("right")
-cv2.moveWindow("right", 850,100)
+# cv2.namedWindow("left")
+# cv2.moveWindow("left", 450,100)
+# cv2.namedWindow("right")
+# cv2.moveWindow("right", 850,100)
 
 
 disparity = np.zeros((img_width, img_height), np.uint8)
@@ -137,18 +137,28 @@ def stereo_depth_map(rectified_pair, detection_results):
         # print(detection_results)
 
         # print('x1, x2, y1, y2', x1, x2, y1, y2)
-        boxcentre = (x1 +x2)/2, (y1 + y2)/2
-        print(boxcentre)
+       
         box = [x1, y1, x2-x1, y2-y1]
         cv2.rectangle(disparity_color,box,color=(0,255,0),thickness=2)
         rect = disparity_color[y1:y1+y2, x1:x1+x2]
         # depth_value = rect.mean()
-
+        boxcentre = (x1 +x2)/2
+        if boxcentre > img_width/4 :
+            print('frame in right')
+        elif boxcentre < img_width/4 :
+            print('frame in left')
 
         if x1 < 0:
             x1 = 0
         if y1 < 0:
             y1 = 0
+
+        
+        print('box centre', boxcentre)
+        if boxcentre > 
+
+
+
         rect = disparity_color[y1:y1+y2, x1:x1+x2]
         ls = []
         for i in rect:
