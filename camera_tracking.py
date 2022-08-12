@@ -10,6 +10,8 @@ import pandas as pd
 from statistics import mean
 import keyboard
 
+import serial
+
 
 
 
@@ -38,6 +40,10 @@ score_dict = {}
 log_count = 0 
 angle = None
 score_ls = []
+
+
+#!/usr/bin/env python3
+
 
 
 try:
@@ -307,7 +313,17 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
 # capture frames from the camera
 # for frame in camera.capture_continuous(capture, format="bgra", use_video_port=True, resize=(img_width,img_height)):
 detection_result = None
+ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+ser.reset_input_buffer()
 while True:
+ 
+    
+    angle = input('Let us wait for user input. \n') 
+    ser.write(angle.encode())
+    line = ser.readline().decode('utf-8').rstrip()
+    print(line)
+
+
     frame = get_frame(camera)
     frame = cv2.resize(frame, (img_width, img_height))
      
