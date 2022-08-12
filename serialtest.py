@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from libcst import BaseString
 import serial
 import time
 if __name__ == '__main__':
@@ -6,7 +7,7 @@ if __name__ == '__main__':
     ser.reset_input_buffer()
     while True:
         angle = input('Let us wait for user input. \n') 
-        ser.write(b""+str(angle)+"\n")
+        ser.write(str(angle) + "\n")
         line = ser.readline().decode('utf-8').rstrip()
         print(line)
         time.sleep(1)
