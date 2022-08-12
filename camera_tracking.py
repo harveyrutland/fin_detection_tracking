@@ -135,7 +135,10 @@ def stereo_depth_map(rectified_pair, detection_results):
         # y2 = 10
         # x1, y1, x2, y2 = box[0], box[1], box[2], box[3]
         # print(detection_results)
-        print('x1, x2, y1, y2', x1, x2, y1, y2)
+
+        # print('x1, x2, y1, y2', x1, x2, y1, y2)
+        boxcentre = (x1 +x2)/2, (y1 + y2)/2
+        print(boxcentre)
         box = [x1, y1, x2-x1, y2-y1]
         cv2.rectangle(disparity_color,box,color=(0,255,0),thickness=2)
         rect = disparity_color[y1:y1+y2, x1:x1+x2]
