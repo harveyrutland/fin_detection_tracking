@@ -160,11 +160,14 @@ def stereo_depth_map(rectified_pair, detection_results):
        
         if boxcentre > img_width/4 :
             print('frame in right')
+         
         elif boxcentre < img_width/4 :
             print('frame in left')
+            
         
         print('box centre', boxcentre)
         print('offset from centre is', boxcentre - (img_width/4) )
+        ser.write((boxcentre - (img_width/4)).encode())
         
 
 
@@ -317,9 +320,7 @@ ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 ser.reset_input_buffer()
 while True:
  
-    
-    angle = input('Let us wait for user input. \n') 
-    ser.write(angle.encode())
+   
     line = ser.readline().decode('utf-8').rstrip()
     print(line)
 
