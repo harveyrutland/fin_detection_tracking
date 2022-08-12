@@ -5,7 +5,8 @@ if __name__ == '__main__':
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
     while True:
-        ser.write(b"90\n")
+        angle = input('Let us wait for user input. \n') 
+        ser.write(b""+str(angle)+"\n")
         line = ser.readline().decode('utf-8').rstrip()
         print(line)
         time.sleep(1)
