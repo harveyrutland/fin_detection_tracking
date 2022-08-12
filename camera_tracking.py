@@ -151,11 +151,14 @@ def stereo_depth_map(rectified_pair, detection_results):
             y1 = 0
 
         
-        print('box centre', boxcentre)
+       
         if boxcentre > img_width/4 :
             print('frame in right')
         elif boxcentre < img_width/4 :
             print('frame in left')
+        
+        print('box centre', boxcentre)
+        print('offset from centre is', boxcentre - (img_width/4) )
         
 
 
