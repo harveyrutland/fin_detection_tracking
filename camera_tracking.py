@@ -143,10 +143,7 @@ def stereo_depth_map(rectified_pair, detection_results):
         rect = disparity_color[y1:y1+y2, x1:x1+x2]
         # depth_value = rect.mean()
         boxcentre = (x1 +x2)/2
-        if boxcentre > img_width/4 :
-            print('frame in right')
-        elif boxcentre < img_width/4 :
-            print('frame in left')
+        
 
         if x1 < 0:
             x1 = 0
@@ -155,7 +152,11 @@ def stereo_depth_map(rectified_pair, detection_results):
 
         
         print('box centre', boxcentre)
-        if boxcentre > 
+        if boxcentre > img_width/4 :
+            print('frame in right')
+        elif boxcentre < img_width/4 :
+            print('frame in left')
+        
 
 
 
