@@ -6,7 +6,7 @@ if __name__ == '__main__':
     ser.reset_input_buffer()
     while True:
         angle = input('Let us wait for user input. \n') 
-        ser.write(str(angle))
+        ser.write(angle.encode())
         line = ser.readline().decode('utf-8').rstrip()
         print(line)
         time.sleep(1)
