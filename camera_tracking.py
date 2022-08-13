@@ -335,7 +335,7 @@ while True:
     
     line = ser.readline().decode('utf-8').rstrip()
     print(line)
-    time.sleep(1)
+    
 
 
     frame = get_frame(camera)
