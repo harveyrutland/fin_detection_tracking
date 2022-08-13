@@ -170,7 +170,7 @@ def stereo_depth_map(rectified_pair, detection_results):
         print('offset from centre is', boxcentre - (img_width/4) )
         value = boxcentre - (img_width/4)
         # ser.write(str(value).encode()+ "\n")
-        ser.write(b"Hello from Raspberry Pi!\n")
+       
      
         
 
@@ -324,7 +324,9 @@ ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 ser.reset_input_buffer()
 print('started')
 while True:
- 
+   
+    
+    ser.write(b"Hello from Raspberry Pi!\n")
     
     line = ser.readline().decode('utf-8').rstrip()
     print(line)
