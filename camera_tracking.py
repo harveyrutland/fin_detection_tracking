@@ -170,7 +170,7 @@ def stereo_depth_map(rectified_pair, detection_results):
         print('offset from centre is', boxcentre - (img_width/4) )
         value = boxcentre - (img_width/4)
         # ser.write(str(value).encode()+ "\n")
-        ser.write(bytes(value))
+        ser.write(bytes(int(value)))
         ser.write(b"\n")
         
 
