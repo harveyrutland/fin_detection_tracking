@@ -320,12 +320,13 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
 # capture frames from the camera
 # for frame in camera.capture_continuous(capture, format="bgra", use_video_port=True, resize=(img_width,img_height)):
 detection_result = None
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-ser.reset_input_buffer()
+# ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+# ser.reset_input_buffer()
 print('started')
 while True:
    
-    
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser.reset_input_buffer()
     ser.write(b"Hello from Raspberry Pi!\n")
     
     line = ser.readline().decode('utf-8').rstrip()
