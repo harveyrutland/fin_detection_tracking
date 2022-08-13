@@ -40,6 +40,7 @@ score_dict = {}
 log_count = 0 
 angle = None
 score_ls = []
+value = 0 
 
 
 #!/usr/bin/env python3
@@ -108,6 +109,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     global log_count
     global angle
     global score_ls
+    global value
    
     dmLeft = rectified_pair[0]
     dmRight = rectified_pair[1]
@@ -327,7 +329,8 @@ while True:
    
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
-    ser.write(b"Hello from Raspberry Pi!\n")
+    ser.write(bytes(value, 'utf-8'))
+    ser.write(b"\n")
     
     line = ser.readline().decode('utf-8').rstrip()
     print(line)
