@@ -116,7 +116,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     disparity = sbm.compute(dmLeft, dmRight)
     local_max = disparity.max()
     local_min = disparity.min()
-    print('local min', local_min)
+    # print('local min', local_min)
     # print('local max', local_max)
     local_max = 1200
     disparity_grayscale = (disparity-local_min)*(65535.0/(local_max-local_min))
@@ -160,15 +160,15 @@ def stereo_depth_map(rectified_pair, detection_results):
 
         
        
-        if boxcentre > img_width/4 :
-            print('frame in right')
+        # if boxcentre > img_width/4 :
+            # print('frame in right')
          
-        elif boxcentre < img_width/4 :
-            print('frame in left')
+        # elif boxcentre < img_width/4 :
+            # print('frame in left')
             # test
             
         
-        print('box centre', boxcentre)
+        # print('box centre', boxcentre)
         print('offset from centre is', boxcentre - (img_width/4) )
         value = boxcentre - (img_width/4)
         # ser.write(str(value).encode()+ "\n")
@@ -340,6 +340,7 @@ while True:
     frame = cv2.resize(frame, (img_width, img_height))
      
 
+
     imgLeft_col = frame [0:img_height,0:int(img_width/2)] #Y+H and X+W
     t1 = datetime.now()
     pair_img = cv2.cvtColor (frame, cv2.COLOR_BGR2GRAY)
@@ -401,7 +402,7 @@ while True:
     # cv2.imshow("left", imgLeft)
     # cv2.imshow("right", imgRight)    
     t2 = datetime.now()
-    print ("DM build time: " + str(t2-t1))
+    # print ("DM build time: " + str(t2-t1))
 
 
     ######
