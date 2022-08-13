@@ -93,13 +93,12 @@ print('Read calibration data and rectifying stereo pair...')
 calibration = StereoCalibration(input_folder='calib_result')
 
 # Initialize interface windows
-
-#change to see 
-# cv2.namedWindow("Image")
-# cv2.moveWindow("Image", 50,100)
-
-
-
+cv2.namedWindow("Image")
+cv2.moveWindow("Image", 50,100)
+# cv2.namedWindow("left")
+# cv2.moveWindow("left", 450,100)
+# cv2.namedWindow("right")
+# cv2.moveWindow("right", 850,100)
 
 
 disparity = np.zeros((img_width, img_height), np.uint8)
@@ -198,10 +197,9 @@ def stereo_depth_map(rectified_pair, detection_results):
 
 
 
-    
-    # change to see
 
-    # cv2.imshow("Image", disparity_color)
+
+    cv2.imshow("Image", disparity_color)
     key = cv2.waitKey(1) & 0xFF   
     if key == ord("q"):
         quit();
@@ -307,10 +305,8 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
     # Show the FPS
   fps_text = 'FPS = {:.1f}'.format(fps)
   text_location = (left_margin, row_size)
-
-# change to see
-#   cv2.putText(img_left, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,font_size, text_color, font_thickness)
-#   cv2.imshow('object_detector', img_left)
+  cv2.putText(img_left, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,font_size, text_color, font_thickness)
+  cv2.imshow('object_detector', img_left)
 
   return detection_result
 
