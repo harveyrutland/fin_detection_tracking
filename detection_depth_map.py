@@ -157,7 +157,8 @@ def stereo_depth_map(rectified_pair, detection_results):
         except IndexError:
             log_count += 1
             print('log_count is:', log_count)
-            log = False
+            if log_count >= 100:
+                log = False
             pass
 
 
