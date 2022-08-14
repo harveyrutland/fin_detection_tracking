@@ -144,19 +144,21 @@ def stereo_depth_map(rectified_pair, detection_results):
                 score_dict[angle] = score_ls
                 print('score dict')
                 print(score_dict)
-                df = pd.DataFrame.from_dict(score_dict)
+                
+                df = pd.DataFrame.from_dict(score_dict, orient = 'index')
                 print(df)
                 df = df.stack()
                 print(df)
                 df.to_csv('roation_data.csv', index=True)
                 log_count = 0
+                score_ls = []
                 log = False
 
 
         except IndexError:
             log_count += 1
             print('log_count is:', log_count)
-            if log_count >= 100:
+            if log_count >= 20:
                 log_count = 0
                 log = False
             pass
