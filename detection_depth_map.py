@@ -140,7 +140,7 @@ def stereo_depth_map(rectified_pair, detection_results):
             print(log_count)
             score_ls.append(detection_score)
             
-            if log_count == 100:
+            if log_count >= 100:
                 score_dict[angle] = score_ls
                 print('score dict')
                 print(score_dict)
@@ -275,7 +275,7 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
   base_options = core.BaseOptions(
       file_name=model, use_coral=enable_edgetpu, num_threads=num_threads)
   detection_options = processor.DetectionOptions(
-      max_results=1, score_threshold=0.05)
+      max_results=1, score_threshold=0.2)
   options = vision.ObjectDetectorOptions(
       base_options=base_options, detection_options=detection_options)
   detector = vision.ObjectDetector.create_from_options(options)
