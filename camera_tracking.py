@@ -36,6 +36,7 @@ SPWS = 100
 
 
 log = False 
+detected = False 
 score_dict = {}
 log_count = 0 
 angle = None
@@ -241,6 +242,8 @@ load_map_settings ("3dmap_set.txt")
 
 def run(img_left, model: str, camera_id: int, width: int, height: int, num_threads: int,
         enable_edgetpu: bool) -> None:
+        
+  global detected 
   """Continuously run inference on images acquired from the camera.
 
   Args:
@@ -307,6 +310,7 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
   text_location = (left_margin, row_size)
   cv2.putText(img_left, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,font_size, text_color, font_thickness)
   cv2.imshow('object_detector', img_left)
+  detected = True
 
   return detection_result
 
@@ -327,14 +331,15 @@ detection_result = None
 # ser.reset_input_buffer()
 print('started')
 while True:
-   
-    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-    ser.reset_input_buffer()
-    ser.write(bytes(str(value), 'utf-8'))
-    ser.write(b"\n")
     
-    line = ser.readline().decode('utf-8').rstrip()
-    print(line)
+
+    if detected == True:
+        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser.reset_input_buffer()
+        ser.write(bytes(str(value), 'utf-8'))
+        ser.write(b"\n")
+        line = ser.readline().decode('utf-8').rstrip()
+        print(line)
     
 
 
