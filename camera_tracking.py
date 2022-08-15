@@ -111,6 +111,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     global angle
     global score_ls
     global value
+    global detected 
    
     dmLeft = rectified_pair[0]
     dmRight = rectified_pair[1]
@@ -254,7 +255,7 @@ load_map_settings ("3dmap_set.txt")
 def run(img_left, model: str, camera_id: int, width: int, height: int, num_threads: int,
         enable_edgetpu: bool) -> None:
 
-  global detected 
+
   """Continuously run inference on images acquired from the camera.
 
   Args:
