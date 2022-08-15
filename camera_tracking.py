@@ -127,10 +127,21 @@ def stereo_depth_map(rectified_pair, detection_results):
     # print(detection_results.detections[0].bounding_box)
     # print('detection results', detection_results)
 
+
+
+   
+    try:
+        detection_score = detection_results.detections[0].classes[0].score 
+        score_dict[str(angle)] = []
+    except IndexError:
+        detection_score = 0 
+
+    if detection_score > 0:
+        detected = True
+
+
     
-
-  
-
+    
 
     try:
         x1 = (detection_results.detections[0].bounding_box.origin_x) - 40
@@ -242,7 +253,7 @@ load_map_settings ("3dmap_set.txt")
 
 def run(img_left, model: str, camera_id: int, width: int, height: int, num_threads: int,
         enable_edgetpu: bool) -> None:
-        
+
   global detected 
   """Continuously run inference on images acquired from the camera.
 
@@ -310,7 +321,7 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
   text_location = (left_margin, row_size)
   cv2.putText(img_left, fps_text, text_location, cv2.FONT_HERSHEY_PLAIN,font_size, text_color, font_thickness)
   cv2.imshow('object_detector', img_left)
-  detected = True
+  
 
   return detection_result
 
