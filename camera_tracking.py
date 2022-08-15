@@ -346,9 +346,7 @@ while True:
     if detected == True:
         ser.write(bytes(str(value), 'utf-8'))
         ser.write(b"\n")
-        print('shark in sight', value)
     else:
-        print('shark not in sight')
         value = 0.00
         ser.write(bytes(str(value), 'utf-8'))
         ser.write(b"\n")
