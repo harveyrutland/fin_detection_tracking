@@ -347,7 +347,7 @@ while True:
         ser.write(bytes(str(value), 'utf-8'))
         ser.write(b"\n")
     else:
-        value = 'lost'
+        value = 0
         ser.write(bytes(str(value), 'utf-8'))
         ser.write(b"\n")
     
