@@ -139,6 +139,8 @@ def stereo_depth_map(rectified_pair, detection_results):
 
     if detection_score > 0:
         detected = True
+    else:
+        detected = False
 
 
     
@@ -325,11 +327,6 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
   
 
   return detection_result
-
-#   cap.release()
-#   cv2.destroyAllWindows()
-
-
   #####################
   ######################
 
@@ -344,14 +341,22 @@ detection_result = None
 print('started')
 while True:
     
-
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser.reset_input_buffer()
     if detected == True:
-        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-        ser.reset_input_buffer()
         ser.write(bytes(str(value), 'utf-8'))
         ser.write(b"\n")
-        line = ser.readline().decode('utf-8').rstrip()
-        print(line)
+    else:
+        value = 'lost'
+        ser.write(bytes(str(value), 'utf-8'))
+        ser.write(b"\n")
+    
+    line = ser.readline().decode('utf-8').rstrip()
+    print(line)
+    
+
+    
+
     
 
 
