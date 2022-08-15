@@ -137,7 +137,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     except IndexError:
         detection_score = 0 
 
-    if detection_score > 0:
+    if detection_score > 0.8:
         detected = True
     else:
         detected = False
