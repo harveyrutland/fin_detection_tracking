@@ -348,7 +348,7 @@ while True:
         ser.write(b"\n")
     else:
         print('shark not in sight')
-        value = 0
+        value = -1000
         ser.write(bytes(str(value), 'utf-8'))
         ser.write(b"\n")
     
