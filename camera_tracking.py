@@ -339,10 +339,10 @@ detection_result = None
 # ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 # ser.reset_input_buffer()
 print('started')
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-ser.reset_input_buffer()
+
 while True:
-    
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser.reset_input_buffer()
    
     # if detected == True:
     ser.write(bytes(str(value), 'utf-8'))
