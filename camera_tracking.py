@@ -343,7 +343,7 @@ detection_result = None
 print('started')
 while True:
     
-    ser = serial.Serial('/dev/ttyACM0', 14400, timeout=1)
+    ser = serial.Serial('/dev/ttyACM0', 38400, timeout=1)
     ser.reset_input_buffer()
     if detected == True:
         ser.write(bytes(str(value), 'utf-8'))
