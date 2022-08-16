@@ -344,7 +344,7 @@ print('started')
 
 import os
 # if os.path.exists('/dev/ttyACM0') == True:
-ser = serial.Serial('/dev/ttyACM0',9600,timeout = 1)
+ser = serial.Serial('/dev/ttyACM1',9600,timeout = 1)
 ser.reset_input_buffer()
 # elif os.path.exists('/dev/ttyACM1') == True:
 #     ser = serial.Serial('/dev/ttyACM1',9600,timeout = 1)
