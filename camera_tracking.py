@@ -350,6 +350,7 @@ while True:
         
    
     if detected == True:
+        ser.reset_input_buffer()
         ser.write(bytes(str(value), 'utf-8'))
         ser.write(b"\n")
     
