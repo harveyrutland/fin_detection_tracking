@@ -347,9 +347,11 @@ while True:
 
     if os.path.exists('/dev/ttyACM0') == True:
         ser = serial.Serial('/dev/ttyACM0',9600,timeout = 10)
+        ser.reset_input_buffer()
     elif os.path.exists('/dev/ttyACM1') == True:
         ser = serial.Serial('/dev/ttyACM1',9600,timeout = 10)
-    ser.reset_input_buffer()
+        ser.reset_input_buffer()
+    
 
     if detected == True:
         ser.write(bytes(str(value), 'utf-8'))
