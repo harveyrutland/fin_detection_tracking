@@ -342,17 +342,12 @@ print('started')
 
 
 
-import os
-if os.path.exists('/dev/ttyACM0') == True:
-    ser = serial.Serial('/dev/ttyACM0',9600,timeout = 1)
-    ser.reset_input_buffer()
-elif os.path.exists('/dev/ttyACM1') == True:
-    ser = serial.Serial('/dev/ttyACM1',9600,timeout = 1)
-    ser.reset_input_buffer()
+
 while True:
 
     
-    
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser.reset_input_buffer()
 
     if detected == True:
         ser.write(bytes(str(value), 'utf-8'))
@@ -372,8 +367,8 @@ while True:
     #     ser.write(bytes(str(value), 'utf-8'))
     #     ser.write(b"\n")
     
-    line = ser.readline().decode('utf-8').rstrip()
-    print(line)
+    # line = ser.readline().decode('utf-8').rstrip()
+    # print(line)
     
 
     
