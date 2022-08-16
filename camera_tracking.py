@@ -342,7 +342,7 @@ print('started')
 
 
 
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
 ser.reset_input_buffer()
 while True:
 
