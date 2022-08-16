@@ -42,6 +42,7 @@ log_count = 0
 angle = None
 score_ls = []
 value = 0 
+depth_value = 0 
 
 
 #!/usr/bin/env python3
@@ -112,6 +113,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     global score_ls
     global value
     global detected 
+    global depth_value
    
     dmLeft = rectified_pair[0]
     dmRight = rectified_pair[1]
@@ -345,17 +347,24 @@ while True:
     ser.reset_input_buffer()
     if detected == True:
         ser.write(bytes(str(value), 'utf-8'))
+        ser.write(b"+")
+        ser.write(bytes(str(depth_value), 'utf-8'))
+
+
         ser.write(b"\n")
         print('shark in sight', value)
         time.sleep
+        line = ser.readline().decode('utf-8').rstrip()
+        print(line)
     else:
         print('shark not in sight')
         value = 0.00
         ser.write(bytes(str(value), 'utf-8'))
+        ser.write(b"+")
+        ser.write(bytes(str(depth_value), 'utf-8'))
         ser.write(b"\n")
     
-    line = ser.readline().decode('utf-8').rstrip()
-    print(line)
+   
     
 
     
