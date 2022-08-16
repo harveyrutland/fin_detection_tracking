@@ -372,8 +372,8 @@ while True:
     #     ser.write(bytes(str(value), 'utf-8'))
     #     ser.write(b"\n")
     
-    # line = ser.readline().decode('utf-8').rstrip()
-    # print(line)
+    line = ser.readline().decode('utf-8').rstrip()
+    print(line)
     
 
     
