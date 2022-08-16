@@ -349,9 +349,9 @@ while True:
    
         
    
-    # if detected == True:
-    ser.write(bytes(str(value), 'utf-8'))
-    ser.write(b"\n")
+    if detected == True:
+        ser.write(bytes(str(value), 'utf-8'))
+        ser.write(b"\n")
     
     # except FileNotFoundError:
     #     ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
