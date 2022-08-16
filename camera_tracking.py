@@ -341,12 +341,21 @@ detection_result = None
 print('started')
 
 while True:
-    ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
-    ser.reset_input_buffer()
+    try:
+        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        ser.reset_input_buffer()
    
     # if detected == True:
-    ser.write(bytes(str(value), 'utf-8'))
-    ser.write(b"\n")
+        ser.write(bytes(str(value), 'utf-8'))
+        ser.write(b"\n")
+    
+    except FileNotFoundError:
+        ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
+        ser.reset_input_buffer()
+   
+    # if detected == True:
+        ser.write(bytes(str(value), 'utf-8'))
+        ser.write(b"\n")
 
     # else:
     #     print('shark not in sight')
