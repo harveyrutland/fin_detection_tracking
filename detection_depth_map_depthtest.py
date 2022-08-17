@@ -91,12 +91,10 @@ print('Read calibration data and rectifying stereo pair...')
 calibration = StereoCalibration(input_folder='calib_result')
 
 # Initialize interface windows
-cv2.namedWindow("Image")
-cv2.moveWindow("Image", 50,100)
-cv2.namedWindow("left")
-cv2.moveWindow("left", 450,100)
-cv2.namedWindow("right")
-cv2.moveWindow("right", 850,100)
+# change to see
+# cv2.namedWindow("Image")
+# cv2.moveWindow("Image", 50,100)
+
 
 
 disparity = np.zeros((img_width, img_height), np.uint8)
