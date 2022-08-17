@@ -162,7 +162,7 @@ def stereo_depth_map(rectified_pair, detection_results):
                 log_count = 0
                 score_ls = []
                 log = False
-                depth_value = 0 
+                depth_value = 2
                 ser.write(bytes(str(depth_value), 'utf-8'))
                 ser.write(b"\n")
                 
