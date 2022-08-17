@@ -355,7 +355,7 @@ while True:
         print('shark in sight', value)
         time.sleep
         line = ser.readline().decode('utf-8').rstrip()
-        print(line)
+        print('servo pos is:', line)
     else:
         print('shark not in sight')
         value = 0.00
