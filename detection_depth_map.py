@@ -40,6 +40,7 @@ angle = None
 score_ls = []
 
 
+
 try:
   camera_params = json.load(open("camera_params.txt", "r"))
 except Exception as e:
