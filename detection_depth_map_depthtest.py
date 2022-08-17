@@ -149,7 +149,7 @@ def stereo_depth_map(rectified_pair, detection_results):
             score_ls.append(detection_score)
 
             print('log_count is:', log_count)
-            if log_count >= 20:
+            if log_count >= 50:
                 score_dict[angle] = zip(score_ls, depth_ls)
                 print('score dict')
                 print(score_dict)
@@ -162,6 +162,9 @@ def stereo_depth_map(rectified_pair, detection_results):
                 log_count = 0
                 score_ls = []
                 log = False
+                depth_value = 0 
+                ser.write(bytes(str(depth_value), 'utf-8'))
+                ser.write(b"\n")
                 
 
 
@@ -233,9 +236,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     key = cv2.waitKey(1) & 0xFF   
     if key == ord("q"):
         quit();
-
-    if log_count >= 50:
-        depth_value = 0 
+ 
     return disparity_color
 
 def load_map_settings( fName ):
