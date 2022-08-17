@@ -162,13 +162,13 @@ def stereo_depth_map(rectified_pair, detection_results):
                 log_count = 0
                 score_ls = []
                 log = False
-                depth_value = 0 
+                
 
 
         except IndexError:
             log_count += 1
             print('log_count is:', log_count)
-            if log_count >= 20:
+            if log_count >= 50:
                 log_count = 0
                 log = False
             pass
@@ -233,6 +233,9 @@ def stereo_depth_map(rectified_pair, detection_results):
     key = cv2.waitKey(1) & 0xFF   
     if key == ord("q"):
         quit();
+
+    if log_count >= 50:
+        depth_value = 0 
     return disparity_color
 
 def load_map_settings( fName ):
@@ -369,7 +372,7 @@ while True:
         print('recieving from arduino:', line)
     else:
         print('shark not in sight')
-        value = 0.00
+        depth_value = 0 
         ser.write(bytes(str(depth_value), 'utf-8'))
         # ser.write(b"+")
         # ser.write(bytes(str(depth_value), 'utf-8'))
