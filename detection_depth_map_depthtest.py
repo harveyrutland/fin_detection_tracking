@@ -10,7 +10,7 @@ import pandas as pd
 from statistics import mean
 import keyboard
 
-
+import serial
 
 
 import argparse
@@ -18,6 +18,8 @@ from tflite_support.task import core
 from tflite_support.task import processor
 from tflite_support.task import vision
 import utils
+
+
 
 
 
@@ -40,6 +42,7 @@ angle = None
 score_ls = []
 depth_ls = []
 depth_value = None
+detected = False 
 
 
 try:
@@ -106,6 +109,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     global score_ls
     global depth_ls
     global depth_value 
+    global detected 
    
     dmLeft = rectified_pair[0]
     dmRight = rectified_pair[1]
@@ -167,6 +171,17 @@ def stereo_depth_map(rectified_pair, detection_results):
                 log_count = 0
                 log = False
             pass
+    
+    try:
+        detection_score = detection_results.detections[0].classes[0].score 
+        score_dict[str(angle)] = []
+    except IndexError:
+        detection_score = 0 
+
+    if detection_score > 0.8:
+        detected = True
+    else:
+        detected = False
 
 
     try:
@@ -338,6 +353,29 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
 # for frame in camera.capture_continuous(capture, format="bgra", use_video_port=True, resize=(img_width,img_height)):
 detection_result = None
 while True:
+
+
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser.reset_input_buffer()
+    if detected == True:
+        ser.write(bytes(str(value), 'utf-8'))
+        # ser.write(b"+")
+        # ser.write(bytes(str(depth_value), 'utf-8'))
+        ser.write(b"\n")
+        line = ser.readline().decode('utf-8').rstrip()
+        
+        print('shark in sight', value)
+    
+        
+        print('servo pos is:', line)
+    else:
+        print('shark not in sight')
+        value = 0.00
+        ser.write(bytes(str(value), 'utf-8'))
+        # ser.write(b"+")
+        # ser.write(bytes(str(depth_value), 'utf-8'))
+        ser.write(b"\n")
+
     frame = get_frame(camera)
     frame = cv2.resize(frame, (img_width, img_height))
      
