@@ -347,8 +347,8 @@ while True:
     ser.reset_input_buffer()
     if detected == True:
         ser.write(bytes(str(value), 'utf-8'))
-        ser.write(b"+")
-        ser.write(bytes(str(depth_value), 'utf-8'))
+        # ser.write(b"+")
+        # ser.write(bytes(str(depth_value), 'utf-8'))
 
 
         ser.write(b"\n")
