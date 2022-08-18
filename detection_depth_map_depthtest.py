@@ -160,8 +160,7 @@ def stereo_depth_map(rectified_pair, detection_results):
                 log_count = 0
                 score_ls = []
                 log = False
-                ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-                ser.reset_input_buffer()
+           
                 
             
            
@@ -174,8 +173,7 @@ def stereo_depth_map(rectified_pair, detection_results):
             if log_count >= 20:
                 log_count = 0
                 log = False
-                ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-                ser.reset_input_buffer()
+               
             pass
     
     try:
