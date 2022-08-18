@@ -147,7 +147,7 @@ def stereo_depth_map(rectified_pair, detection_results):
             score_ls.append(detection_score)
 
             print('log_count is:', log_count)
-            if log_count >= 50:
+            if log_count >= 20:
                 score_dict[angle] = zip(score_ls, depth_ls)
                 print('score dict')
                 print(score_dict)
@@ -171,7 +171,7 @@ def stereo_depth_map(rectified_pair, detection_results):
         except IndexError:
             log_count += 1
             print('log_count is:', log_count)
-            if log_count >= 50:
+            if log_count >= 20:
                 log_count = 0
                 log = False
                 ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
