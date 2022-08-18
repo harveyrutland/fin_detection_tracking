@@ -12,7 +12,7 @@ import keyboard
 
 import serial
 
-
+ls = []
 
 
 import argparse
@@ -341,6 +341,7 @@ detection_result = None
 # ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
 # ser.reset_input_buffer()
 print('started')
+count = 0
 while True:
     
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
@@ -353,6 +354,15 @@ while True:
         line = ser.readline().decode('utf-8').rstrip()
         
         print('shark in sight', value)
+        
+
+        count += 1
+        ls.append(value)
+        if count % 10 == 0:
+            df = pd.DataFrame(ls, columns =['centre_val'])
+            df.to_csv('camara tracking.csv',mode='w', index=True)
+
+
     
         
         print('servo pos is:', line)
