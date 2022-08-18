@@ -376,7 +376,7 @@ while True:
         ser.write(bytes(str(depth_value), 'utf-8'))
         # ser.write(b"+")
         # ser.write(bytes(str(depth_value), 'utf-8'))
-        ser.write(b"\n")
+        # ser.write(b"\n")
 
     frame = get_frame(camera)
     frame = cv2.resize(frame, (img_width, img_height))
