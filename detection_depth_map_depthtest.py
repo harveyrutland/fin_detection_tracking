@@ -149,6 +149,7 @@ def stereo_depth_map(rectified_pair, detection_results):
 
             print('log_count is:', log_count)
             if log_count >= 20:
+                score_dict = {}
                 score_dict[angle] = zip(score_ls, depth_ls)
                 print('score dict')
                 print(score_dict)
@@ -156,7 +157,7 @@ def stereo_depth_map(rectified_pair, detection_results):
                 df = df.stack()
                 print(df)
                 df.to_csv('depth_data.csv', index=True)
-                score_dict = {}
+                
                 
              
                 
