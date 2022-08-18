@@ -160,6 +160,7 @@ def stereo_depth_map(rectified_pair, detection_results):
                 log_count = 0
                 score_ls = []
                 log = False
+                ser.reset_input_buffer()
             
            
                 
