@@ -220,7 +220,7 @@ def stereo_depth_map(rectified_pair, detection_results):
             depth_value = rect_filt
         else:
             depth_value = 0
-        print('depth value', depth_value)
+        # print('depth value', depth_value)
         depth_ls.append(depth_value)
        
     except IndexError:
@@ -367,9 +367,9 @@ while True:
         # ser.write(b"+")
         # ser.write(bytes(str(depth_value), 'utf-8'))
         ser.write(b"\n")
-        line = ser.readline().decode('utf-8').rstrip()
+        # line = ser.readline().decode('utf-8').rstrip()
         print('shark in sight', depth_value)
-        print('recieving from arduino:', line)
+        # print('recieving from arduino:', line)
     else:
         print('shark not in sight')
         depth_value = 0 
