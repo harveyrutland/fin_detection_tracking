@@ -374,7 +374,6 @@ while True:
         line = ser.readline().decode('utf-8').rstrip()
         print('shark in sight', depth_value)
         print('recieving from arduino:', line)
-        time.sleep(1)
     else:
         print('shark not in sight')
         depth_value = 0 
