@@ -154,12 +154,13 @@ def stereo_depth_map(rectified_pair, detection_results):
                 
                 try:
                     df = pd.DataFrame.from_dict(score_dict, orient = 'index')
+                    df = df.stack()
+                    print(df)
+                    df.to_csv('depth_data.csv', index=True)
                 except TypeError:
                     pass
-                print(df)
-                df = df.stack()
-                print(df)
-                df.to_csv('depth_data.csv', index=True)
+             
+                
                 log_count = 0
                 score_ls = []
                 log = False
