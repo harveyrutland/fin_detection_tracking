@@ -168,7 +168,7 @@ def stereo_depth_map(rectified_pair, detection_results):
         except IndexError:
             log_count += 1
             print('log_count is:', log_count)
-            if log_count >= 10:
+            if log_count >= 50:
                 log_count = 0
                 log = False
             pass
@@ -191,12 +191,7 @@ def stereo_depth_map(rectified_pair, detection_results):
         y1 = detection_results.detections[0].bounding_box.origin_y - 40
         y2 = y1 + detection_results.detections[0].bounding_box.height  + 60
 
-        # x1 = 0
-        # x2 =  10
-        # y1 = 0
-        # y2 = 10
-        # x1, y1, x2, y2 = box[0], box[1], box[2], box[3]
-        # print(detection_results)
+    
         print('x1, x2, y1, y2', x1, x2, y1, y2)
         box = [x1, y1, x2-x1, y2-y1]
         cv2.rectangle(disparity_color,box,color=(0,255,0),thickness=2)
@@ -367,7 +362,6 @@ while True:
         # ser.write(bytes(str(depth_value), 'utf-8'))
         ser.write(b"\n")
         line = ser.readline().decode('utf-8').rstrip()
-        
         print('shark in sight', depth_value)
         print('recieving from arduino:', line)
     else:
@@ -383,7 +377,7 @@ while True:
      
 
     imgLeft_col = frame [0:img_height,0:int(img_width/2)] #Y+H and X+W
-    t1 = datetime.now()
+    # t1 = datetime.now()
     pair_img = cv2.cvtColor (frame, cv2.COLOR_BGR2GRAY)
     
     imgRight = pair_img [0:img_height,int(img_width/2):img_width] #Y+H and X+W
@@ -442,8 +436,8 @@ while True:
     # show the frame
     # cv2.imshow("left", imgLeft)
     # cv2.imshow("right", imgRight)    
-    t2 = datetime.now()
-    print ("DM build time: " + str(t2-t1))
+    # t2 = datetime.now()
+    # print ("DM build time: " + str(t2-t1))
 
 
     ######
