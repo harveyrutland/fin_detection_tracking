@@ -359,14 +359,14 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
 detection_result = None
 while True:
 
-    ser.reset_input_buffer()
+    
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=2000000)
     ser.reset_input_buffer()
     if detected == True:
         ser.write(bytes(str(depth_value), 'utf-8'))
         # ser.write(b"+")
         # ser.write(bytes(str(depth_value), 'utf-8'))
-        ser.write(b"\n")
+        # ser.write(b"\n")
         # line = ser.readline().decode('utf-8').rstrip()
         print('shark in sight', depth_value)
         # print('recieving from arduino:', line)
