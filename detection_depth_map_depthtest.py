@@ -364,7 +364,7 @@ detection_result = None
 while True:
 
     
-    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=2000000)
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
     if detected == True:
         ser.write(bytes(str(depth_value), 'utf-8'))
