@@ -163,6 +163,7 @@ def stereo_depth_map(rectified_pair, detection_results):
                 
                 log_count = 0
                 score_ls = []
+                depth_ls = []
                 log = False
            
                 
@@ -177,6 +178,8 @@ def stereo_depth_map(rectified_pair, detection_results):
             if log_count >= 20:
                 log_count = 0
                 log = False
+                score_ls = []
+                depth_ls = []
                
             pass
     
