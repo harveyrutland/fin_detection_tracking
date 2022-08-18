@@ -373,8 +373,8 @@ while True:
         ser.write(b"\n")
         
         print('shark in sight', depth_value)
-        # line = ser.readline().decode('utf-8').rstrip()
-        # print('recieving from arduino:', line)
+        line = ser.readline().decode('utf-8').rstrip()
+        print('recieving from arduino:', line)
     else:
         print('shark not in sight')
         depth_value = 0 
