@@ -359,7 +359,7 @@ def run(img_left, model: str, camera_id: int, width: int, height: int, num_threa
 detection_result = None
 while True:
 
-
+    ser.reset_input_buffer()
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=2000000)
     ser.reset_input_buffer()
     if detected == True:
