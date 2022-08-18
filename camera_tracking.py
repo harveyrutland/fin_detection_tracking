@@ -347,8 +347,8 @@ while True:
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
     if detected == True:
-        # ser.write(bytes(str(value), 'utf-8'))
-        ser.write(bytes(str(depth_value), 'utf-8'))
+        ser.write(bytes(str(value), 'utf-8'))
+        # ser.write(bytes(str(depth_value), 'utf-8'))
         ser.write(b"\n")
         line = ser.readline().decode('utf-8').rstrip()
         
@@ -357,8 +357,8 @@ while True:
         
 
         count += 1
-        # ls.append(value)
-        ls.append(depth_value)
+        ls.append(value)
+        # ls.append(depth_value)
         if count % 10 == 0:
             df = pd.DataFrame(ls, columns =['centre_val'])
             df.to_csv('depth tracking.csv',mode='w', index=True)
@@ -366,8 +366,8 @@ while True:
     else:
         print('shark not in sight')
         value = 0.00
-        # ser.write(bytes(str(value), 'utf-8'))
-        ser.write(bytes(str(depth_value), 'utf-8'))
+        ser.write(bytes(str(value), 'utf-8'))
+        # ser.write(bytes(str(depth_value), 'utf-8'))
         ser.write(b"\n")
     
    
