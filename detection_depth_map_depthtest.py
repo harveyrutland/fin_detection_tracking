@@ -152,7 +152,10 @@ def stereo_depth_map(rectified_pair, detection_results):
                 print('score dict')
                 print(score_dict)
                 
-                df = pd.DataFrame.from_dict(score_dict, orient = 'index')
+                try:
+                    df = pd.DataFrame.from_dict(score_dict, orient = 'index')
+                except TypeError:
+                    pass
                 print(df)
                 df = df.stack()
                 print(df)
