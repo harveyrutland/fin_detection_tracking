@@ -108,6 +108,7 @@ def stereo_depth_map(rectified_pair, detection_results):
     global depth_ls
     global depth_value 
     global detected 
+    global score_dict
    
     dmLeft = rectified_pair[0]
     dmRight = rectified_pair[1]
