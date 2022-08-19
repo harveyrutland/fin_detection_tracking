@@ -361,7 +361,7 @@ while True:
         # ls.append(depth_value)
         if count % 10 == 0:
             df = pd.DataFrame(ls, columns =['centre_val'])
-            df.to_csv('camera tracking.csv',mode='w', index=True)
+            df.to_csv('practicle_camera_tracking.csv',mode='w', index=True)
         print('servo pos is:', line)
     else:
         print('shark not in sight')
