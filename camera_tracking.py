@@ -349,8 +349,8 @@ while True:
     if detected == True:
         ser.write(bytes(str(value), 'utf-8'))
         # ser.write(bytes(str(depth_value), 'utf-8'))
-        ser.write(b"\n")
-        line = ser.readline().decode('utf-8').rstrip()
+        # ser.write(b"\n")
+        # line = ser.readline().decode('utf-8').rstrip()
         
         # print('shark in sight', value)
         print('shark in depth of',depth_value)
