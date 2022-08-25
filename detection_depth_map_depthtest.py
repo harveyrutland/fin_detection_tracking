@@ -129,6 +129,11 @@ def stereo_depth_map(rectified_pair, detection_results):
 
     if log == False:
         angle = input('Let us wait for user input. \n') 
+        a = 10
+        while a > 0:
+            print(a)
+            time.sleep(5)
+            a = (a -1)
 
 
         print('loading started')
@@ -367,23 +372,23 @@ while True:
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
     if detected == True:
-        ser.write(bytes(str(depth_value), 'utf-8'))
+        # ser.write(bytes(str(depth_value), 'utf-8'))
         # ser.write(b"+")
         # ser.write(bytes(str(depth_value), 'utf-8'))
-        ser.write(b"\n")
+        # ser.write(b"\n")
         
         # print('shark in sight', depth_value)
         print('depth value is:', depth_value)
-        line = ser.readline().decode('utf-8').rstrip()
-        print('recieving from arduino:', line)
+        # line = ser.readline().decode('utf-8').rstrip()
+        # print('recieving from arduino:', line)
         time.sleep(1)
     else:
         print('shark not in sight')
         depth_value = 0 
-        ser.write(bytes(str(depth_value), 'utf-8'))
+        # ser.write(bytes(str(depth_value), 'utf-8'))
         # ser.write(b"+")
         # ser.write(bytes(str(depth_value), 'utf-8'))
-        ser.write(b"\n")
+        # ser.write(b"\n")
 
     frame = get_frame(camera)
     frame = cv2.resize(frame, (img_width, img_height))
