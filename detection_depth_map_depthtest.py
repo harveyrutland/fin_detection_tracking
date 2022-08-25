@@ -132,7 +132,7 @@ def stereo_depth_map(rectified_pair, detection_results):
         a = 10
         while a > 0:
             print(a)
-            time.sleep(5)
+            time.sleep(2)
             a = (a -1)
 
 
