@@ -100,12 +100,7 @@ calibration = StereoCalibration(input_folder='calib_result')
 disparity = np.zeros((img_width, img_height), np.uint8)
 sbm = cv2.StereoBM_create(numDisparities=0, blockSize=21)
 
-def stereo_depth_map(rectified_pair, detection_results):
-    global log
-    global log_count
-    global angle
-    global score_ls
-    global depth_ls
+.mean()
     global depth_value 
     global detected 
     global score_dict

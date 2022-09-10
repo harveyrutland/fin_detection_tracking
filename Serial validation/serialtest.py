@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#Script used to validate communication between pi and arduino
 import serial
 import time
 if __name__ == '__main__':

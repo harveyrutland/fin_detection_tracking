@@ -350,7 +350,7 @@ while True:
         ser.write(bytes(str(value), 'utf-8'))
         # ser.write(bytes(str(depth_value), 'utf-8'))
         ser.write(b"\n")
-        # line = ser.readline().decode('utf-8').rstrip()
+        line = ser.readline().decode('utf-8').rstrip()
         
         print('shark in sight', value)
         print('shark in depth of',depth_value)
@@ -359,9 +359,9 @@ while True:
         count += 1
         ls.append(value)
         # ls.append(depth_value)
-        if count % 10 == 0:
-            df = pd.DataFrame(ls, columns =['centre_val'])
-            df.to_csv('practicle_camera_tracking.csv',mode='w', index=True)
+        # if count % 10 == 0:
+        #     df = pd.DataFrame(ls, columns =['centre_val'])
+        #     df.to_csv('practicle_camera_tracking.csv',mode='w', index=True)
         # print('servo pos is:', line)
     else:
         print('shark not in sight')
